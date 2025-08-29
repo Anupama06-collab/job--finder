@@ -1,24 +1,14 @@
-// src/App.js
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./Pages/Home";
-import Jobs from "./Pages/Jobs";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import PostJob from "./Pages/PostJob";
-import "./App.css";
+import Jobs from "./components/Jobs";
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div className="container">
+      <div className="App">
+        <h1>Job Finder</h1>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/post-job" element={<PostJob />} />
         </Routes>
       </div>
     </Router>
