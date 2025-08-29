@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/jobs")
-      .then(res => setJobs(res.data))
-      .catch(err => console.log(err));
+    axios
+      .get("https://job-finder-backend-4ubt.onrender.com/api/jobs") // 👈 use your backend URL
+      .then((res) => setJobs(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
     <div>
-      <h1>Job Listings</h1>
+      <h2>Available Jobs</h2>
       {jobs.length === 0 ? (
         <p>No jobs available</p>
       ) : (
-        jobs.map(job => (
-          <div key={job._id} style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
-            <h2>{job.title}</h2>
-            <p><b>Company:</b> {job.company}</p>
-            <p><b>Location:</b> {job.location}</p>
-            <p><b>Salary:</b> {job.salary}</p>
-            <p>{job.description}</p>
-          </div>
-        ))
+        <ul>
+          {jobs.map((job) => (
+            <li key={job._id}>
+              <h3>{job.title}</h3>
+              <p>{job.company}</p>
+              <p>{job.location}</p>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
